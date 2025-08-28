@@ -15,34 +15,38 @@ jobs:
     steps:
       # 1. Checkout repository
       - name: Checkout source code
-        uses: actions/checkout@v4   # ✅ Updated to v4
+        uses: actions/checkout@v4
 
       # 2. Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.5.0"
+          flutter-version: "3.24.0"  # Updated to match SDK requirement >=3.5.0
           channel: stable
 
-      # 3. Install dependencies
-      - name: Install dependencies
+      # 3. Get dependencies
+      - name: Get dependencies
         run: flutter pub get
 
-      # 4. Run analyzer
+      # 4. Generate code (for stacked_generator)
+      - name: Generate code
+        run: flutter packages pub run build_runner build --delete-conflicting-outputs
+
+      # 5. Run analyzer
       - name: Analyze project
         run: flutter analyze
 
-      # 5. Run tests
+      # 6. Run tests
       - name: Run tests
         run: flutter test
 
-      # 6. Build Android APK
+      # 7. Build Android APK
       - name: Build APK
         run: flutter build apk --release
 
-      # 7. Upload APK as artifact
+      # 8. Upload APK as artifact
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4   # ✅ Updated to v4
+        uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
