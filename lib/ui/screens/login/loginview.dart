@@ -1,5 +1,7 @@
 // loginview.dart - Updated with connectivity UI indicators
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:mvvm_main_may/app/app.router.dart';
+import 'package:mvvm_main_may/app/utils.dart';
 import 'package:mvvm_main_may/constants/app_colors.dart';
 import 'package:mvvm_main_may/constants/app_strings.dart';
 import 'package:mvvm_main_may/constants/assets.gen.dart';
@@ -105,6 +107,8 @@ class LoginView extends StatelessWidget {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text("✅ Login Success")),
                                     );
+
+                                    navigationService.navigateTo(Routes.homeView,arguments: HomeViewArguments(user: viewModel.user!));
                                   }
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(

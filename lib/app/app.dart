@@ -6,14 +6,15 @@ import 'package:stacked_services/stacked_services.dart';
 import '../services/api_services.dart';
 import '../services/connectivity_service.dart';
 import '../services/user_service.dart';
+import '../ui/screens/home/homeview.dart';
 
 
 
 @StackedApp(
   routes: [
     MaterialRoute(page: Splashview, initial: true),
-    MaterialRoute(page: LoginView)
-
+    MaterialRoute(page: LoginView),
+    MaterialRoute(page: HomeView),
   ],
   dependencies: [
     LazySingleton(classType: ApiService),

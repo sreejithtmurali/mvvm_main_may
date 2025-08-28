@@ -9,7 +9,7 @@ class LoginViewModel extends BaseViewModel {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  User? user;
   bool isPasswordVisible = false;
   bool _isConnected = true;
   StreamSubscription<bool>? _connectivitySubscription;
@@ -77,10 +77,14 @@ class LoginViewModel extends BaseViewModel {
         throw Exception("No Internet Connection. Please check your network settings.");
       }
 
-      User user = await apiservice.login(
+      user = await apiservice.login(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      notifyListeners();
+      if(user!=null){
+        await userservice.saveUser(user!);
+      }
 
       setBusy(false);
       return true; //

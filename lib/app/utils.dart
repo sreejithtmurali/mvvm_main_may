@@ -11,4 +11,5 @@ NavigationService get navigationService => locator<NavigationService>();
 
 ApiService get apiservice => locator<ApiService>();
 
+UserService get userservice => locator<UserService>();
 ConnectivityService get connectivityService => locator<ConnectivityService>();
