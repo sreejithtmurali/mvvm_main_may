@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.0  # Lowered to stable version for better compatibility
+  sdk: ^3.5.0  # Lowered to match available Flutter stable versions
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -54,8 +54,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
-  build_runner: ^2.4.12  # Lowered version for compatibility
-  stacked_generator: ^2.0.0  # Upgraded as suggested by error message
+  build_runner: ^2.4.7  # Compatible version
+  stacked_generator: ^1.6.1  # Downgraded to avoid path conflict
   flutter_gen_runner: ^5.10.0
 
 # For information on the generic Dart part of this file, see the
